@@ -44,7 +44,7 @@ def try_download_next_project():
         i+=1
         
         project_id = response.json()["project_id"]
-        print(f"Downloaded project {project_id}'s pdb files")
+        print(f"Downloaded {seq_record.id} sequence's pdb files")
 
     if status =="FAILED":
         projects_failed.append(project_queue.pop(0))
@@ -62,7 +62,7 @@ for seq_record in SeqIO.parse(inputfile, "fasta"):
         })
     
     project_id = response.json()["project_id"]
-    print(f"Start Automodel project {project_id}: ",response)
+    print(f"Start Automodel project for {seq_record.id} sequence: ",response)
     project_queue.append((project_id,seq_record.id))                                #TODO: switch to seqname+project_id tuple 
 
     try_download_next_project()
