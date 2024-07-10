@@ -26,14 +26,14 @@ for seq_record in SeqIO.parse(inputfile, "fasta"):
     time.sleep(1) 
     driver.find_element("xpath", "//button[@id='buildButton']").click()
     time.sleep(1)
-    initialized.append(driver.current_url)
+    initialized_tabs.append(driver.current_url)
     time.sleep(1)
 
     driver.execute_script("window.open('https://swissmodel.expasy.org/interactive');")
     tabnum+=1
     driver.switch_to.window(driver.window_handles[tabnum])
     
-print(initialized)
+print(initialized_tabs)
 
 time.sleep(600)
 
