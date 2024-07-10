@@ -13,7 +13,7 @@ options.add_argument(r"user-data-dir=" + profile_path)
 options.add_argument(r"profile-directory=Default")  # For the "Default" profile
 
 driver = webdriver.Chrome(options=options)
-"""
+
 inputfile="sequences_for_modelling_TEST.fa"
 user_token = "bae511865356f745e4c825d6d23c02afb7b1c924" #Albert Bokor's swissmodel.expasy.org API token
 
@@ -40,28 +40,11 @@ for seq_record in SeqIO.parse(inputfile, "fasta"):
 
 #wait a bit til models generate
 time.sleep(120)
-"""
-
-driver.get("https://swissmodel.expasy.org/interactive/hs9nQz/templates/")
 i=0
 #iterate tabs and download stuff
 while i<maxtab:
     #generate best seqid model
     driver.switch_to.window(driver.window_handles[i])
-
-
-    driver.find_element("xpath", "//a[contains(text(),'Templates')]").click()
-    time.sleep(0.3)
-    print("try id sort...")
-    idheader=driver.find_element("xpath", "//thead/tr[1]/th[@id='seq_idHeader']")
-    driver.execute_script("arguments[0].class = 'headerSortDown';", idheader)
-    print("try select best...")
-    driver.find_element("xpath", "//tbody/tr[1]/td[1]/input']").click()
-    print("try build best...")
-    driver.find_element("xpath", "//button[@id='submitButton']").click()
-    print("generating best seqId model, we're getting there...")
-
-    """
     while True:
         try:
             driver.find_element("xpath", "//a[contains(text(),'Templates')]").click()
@@ -70,7 +53,7 @@ while i<maxtab:
             idheader=driver.find_element("xpath", "//thead/tr[1]/th[@id='seq_idHeader']")
             driver.execute_script("arguments[0].class = 'headerSortDown';", idheader)
             print("try select best...")
-            driver.find_element("xpath", "//tbody/tr[1]/td/input']").click()
+            driver.find_element("xpath", "/html/body/div[2]/div[3]/div/div/div/div[1]/div/div[2]/div[1]/div[1]/table/tbody/tr[1]/td[1]/input").click()
             print("try build best...")
             driver.find_element("xpath", "//button[@id='submitButton']").click()
             print("generating best seqId model, we're getting there...")
@@ -80,7 +63,7 @@ while i<maxtab:
             continue
         else:
             break
-"""
+
     #wait til new model generates
     while True:
         try:
