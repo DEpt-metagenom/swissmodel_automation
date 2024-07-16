@@ -3,6 +3,9 @@ from Bio import SeqIO
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+
+inputfile="sequences_for_modelling.fa"      #<<<<<<<<<<<<<<<<<<<<-- input path here!!!!!!!!
+
 project_queue=[]
 
 options = Options()
@@ -11,8 +14,6 @@ options.add_argument(r"user-data-dir=" + profile_path)
 options.add_argument(r"profile-directory=Default")  # For the "Default" profile
 
 driver = webdriver.Chrome(options=options)
-
-inputfile="sequences_for_modelling.fa"
 
 tabnum=0
 with open('projects_urls.txt', 'a+') as file:
